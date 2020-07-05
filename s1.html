@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+var x;
+$(document).ready(function(){
+
+  
+    $.ajax({url: "https://fxsignals.fxleaders.de/api/FXL/1", success: function(result){
+      var myObj = JSON.parse(JSON.stringify(result));
+	
+for(i = 0; i < myObj.LiveSignals.length; i++) {
+    
+
+  var x = document.createElement("TBODY");
+  var y = document.createElement("TR");
+  
+  var z5 = document.createElement("TD");
+  var z = document.createElement("TD");
+  var z1 = document.createElement("TD");
+  var z2 = document.createElement("TD");
+  var z3 = document.createElement("TD");
+  var z4 = document.createElement("TD");
+
+  if (myObj.LiveSignals[i].status == "Active"){
+  var x7 = "" + myObj.LiveSignals[i].pair + "";
+  var x7 = x7.replace("/", "");
+  z5.innerHTML = "" + x7 + "";
+  z.innerHTML = "==" + myObj.LiveSignals[i].action + "";
+  z1.innerHTML = "==" + myObj.LiveSignals[i].entryPrice + "";
+  z2.innerHTML = "===" + myObj.LiveSignals[i].stopLoss + "";
+  z3.innerHTML = "====" + myObj.LiveSignals[i].takeProfit + "";
+  z4.innerHTML = "====" + myObj.LiveSignals[i].status + "";
+  }
+
+
+  y.appendChild(z5);
+  y.appendChild(z);
+  y.appendChild(z1);
+  y.appendChild(z2);
+  y.appendChild(z3);
+  y.appendChild(z4);
+  x.appendChild(y);
+  document.getElementById("myTable").appendChild(x);
+    
+}
+      
+    }});
+
+  
+});
+</script>
+</head>
+<body>
+
+<table id="myTable">
+</table>
+
+
+
+</body>
+</html>
